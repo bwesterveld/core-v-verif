@@ -325,7 +325,7 @@ $(warning RISCV_CFLAGS set to $(RISCV_CFLAGS))
 
 # Keeping this around just in case it is needed again
 #ifeq ($(firstword $(subst _, ,$(TEST))),pulp)
-#  CFLAGS = -Os -g -D__riscv__=1 -D__LITTLE_ENDIAN__=1 -march=rv32imcxpulpv2 -Wa,-march=rv32imcxpulpv2 -fdata-sections -ffunction-sections -fdiagnostics-color=always
+#  CFLAGS = -Os -g -D__riscv__=1 -D__LITTLE_ENDIAN__=1 -march=rv32imc_zicsrxpulpv2 -Wa,-march=rv32imc_zicsrxpulpv2 -fdata-sections -ffunction-sections -fdiagnostics-color=always
 #endif
 
 ASM       ?= ../../tests/asm
@@ -533,7 +533,7 @@ clean_bsp:
 # compile and dump RISCV_TESTS only
 #$(CV32_RISCV_TESTS_FIRMWARE)/cv32_riscv_tests_firmware.elf: $(CV32_RISCV_TESTS_FIRMWARE_OBJS) $(RISCV_TESTS_OBJS) \
 #							$(CV32_RISCV_TESTS_FIRMWARE)/link.ld
-#	$(RISCV_EXE_PREFIX)gcc -g -Os -mabi=ilp32 -march=rv32imc -ffreestanding -nostdlib -o $@ \
+#	$(RISCV_EXE_PREFIX)gcc -g -Os -mabi=ilp32 -march=rv32imc_zicsr -ffreestanding -nostdlib -o $@ \
 #		$(RISCV_TEST_INCLUDES) \
 #		-Wl,-Bstatic,-T,$(CV32_RISCV_TESTS_FIRMWARE)/link.ld,-Map,$(CV32_RISCV_TESTS_FIRMWARE)/cv32_riscv_tests_firmware.map,--strip-debug \
 #		$(CV32_RISCV_TESTS_FIRMWARE_OBJS) $(RISCV_TESTS_OBJS) -lgcc
@@ -590,7 +590,7 @@ $(FIRMWARE)/firmware.elf: $(FIRMWARE_OBJS) $(FIRMWARE_TEST_OBJS) $(COMPLIANCE_TE
 		$(FIRMWARE_OBJS) $(FIRMWARE_TEST_OBJS) $(COMPLIANCE_TEST_OBJS) -lgcc
 
 #$(FIRMWARE)/start.o: $(FIRMWARE)/start.S
-#	$(RISCV_EXE_PREFIX)gcc -c -march=rv32imc -g -D RUN_COMPLIANCE -o $@ $<
+#	$(RISCV_EXE_PREFIX)gcc -c -march=rv32imc_zicsr -g -D RUN_COMPLIANCE -o $@ $<
 
 # Thales start
 $(FIRMWARE)/start.o: $(FIRMWARE)/start.S

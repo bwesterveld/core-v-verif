@@ -1,0 +1,126 @@
+make veri-test TEST=hello-world
+make[1]: Entering directory '/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/sim/core'
+*******************************************************************************************
+* Cloning CV32E40P RTL model
+*******************************************************************************************
+git clone -b stripped --single-branch https://github.com/bwesterveld/cv32e40p /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/core-v-cores/cv32e40p
+*******************************************************************************************
+* Compiling CORE TB and CV32E40P with Verilator
+*******************************************************************************************
+verilator --cc --sv --exe \
+	 \
+	--Wno-lint --Wno-UNOPTFLAT \
+	--Wno-MODDUP --top-module \
+	tb_top_verilator /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tb/core/tb_top_verilator.sv /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tb/core/cv32e40p_tb_wrapper.sv /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tb/core/tb_riscv/riscv_rvalid_stall.sv /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tb/core/tb_riscv/riscv_gnt_stall.sv /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tb/core/mm_ram.sv /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tb/core/dp_ram.sv \
+	-f /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/core-v-cores/cv32e40p/cv32e40p_manifest.flist \
+	/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/core-v-cores/cv32e40p/bhv/cv32e40p_core_log.sv \
+	/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tb/core/tb_top_verilator.cpp --Mdir cobj_dir \
+	-CFLAGS "-std=gnu++11 -O2" \
+	-Wno-BLKANDNBLK  
+make -C cobj_dir -f Vtb_top_verilator.mk
+make[2]: Entering directory '/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/sim/core/cobj_dir'
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -std=gnu++11 -O2  -std=gnu++14 -Os -c -o tb_top_verilator.o /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tb/core/tb_top_verilator.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -std=gnu++11 -O2  -std=gnu++14 -Os -c -o verilated.o /usr/share/verilator/include/verilated.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -std=gnu++11 -O2  -std=gnu++14 -Os -c -o verilated_dpi.o /usr/share/verilator/include/verilated_dpi.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -std=gnu++11 -O2  -std=gnu++14 -Os -c -o Vtb_top_verilator.o Vtb_top_verilator.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -std=gnu++11 -O2  -std=gnu++14 -Os -c -o Vtb_top_verilator__1.o Vtb_top_verilator__1.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -std=gnu++11 -O2  -std=gnu++14 -Os -c -o Vtb_top_verilator__Dpi.o Vtb_top_verilator__Dpi.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -std=gnu++11 -O2  -std=gnu++14  -c -o Vtb_top_verilator__Slow.o Vtb_top_verilator__Slow.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -std=gnu++11 -O2  -std=gnu++14  -c -o Vtb_top_verilator__1__Slow.o Vtb_top_verilator__1__Slow.cpp
+g++  -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow     -std=gnu++11 -O2  -std=gnu++14  -c -o Vtb_top_verilator__Syms.o Vtb_top_verilator__Syms.cpp
+Archive ar -cr Vtb_top_verilator__ALL.a Vtb_top_verilator.o Vtb_top_verilator__1.o Vtb_top_verilator__Dpi.o Vtb_top_verilator__Slow.o Vtb_top_verilator__1__Slow.o Vtb_top_verilator__Syms.o
+g++    tb_top_verilator.o verilated.o verilated_dpi.o Vtb_top_verilator__ALL.a      -o Vtb_top_verilator
+make[2]: Leaving directory '/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/sim/core/cobj_dir'
+mkdir -p simulation_results
+mkdir -p simulation_results/hello-world
+mv cobj_dir/Vtb_top_verilator simulation_results/hello-world/verilator_executable
+mkdir -p simulation_results/hello-world/0/test_program
+make bsp
+make[2]: Entering directory '/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/sim/core'
+*******************************************************************************************
+* Compiling the BSP
+*******************************************************************************************
+mkdir -p simulation_results/hello-world/0/test_program/bsp
+cp /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/bsp/Makefile simulation_results/hello-world/0/test_program/bsp
+make -C simulation_results/hello-world/0/test_program/bsp \
+	VPATH=/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/bsp \
+	RISCV=/opt/riscv \
+	RISCV_PREFIX=riscv32-unknown-elf- \
+	RISCV_EXE_PREFIX=/opt/riscv/bin/riscv32-unknown-elf- \
+	RISCV_MARCH=rv32imc_zicsr \
+	RISCV_CC=gcc \
+	RISCV_CFLAGS="" \
+	all
+make[3]: Entering directory '/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/sim/core/simulation_results/hello-world/0/test_program/bsp'
+/opt/riscv/bin/riscv32-unknown-elf-gcc -Os -g -static -mabi=ilp32 -march=rv32imc_zicsr -Wall -pedantic -c /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/bsp/crt0.S -o crt0.o
+/opt/riscv/bin/riscv32-unknown-elf-gcc -Os -g -static -mabi=ilp32 -march=rv32imc_zicsr -Wall -pedantic -c /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/bsp/handlers.S -o handlers.o
+/opt/riscv/bin/riscv32-unknown-elf-gcc -Os -g -static -mabi=ilp32 -march=rv32imc_zicsr -Wall -pedantic -c /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/bsp/syscalls.c -o syscalls.o
+/opt/riscv/bin/riscv32-unknown-elf-gcc -Os -g -static -mabi=ilp32 -march=rv32imc_zicsr -Wall -pedantic -c /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/bsp/vectors.S -o vectors.o
+/opt/riscv/bin/riscv32-unknown-elf-ar rcs libcv-verif.a crt0.o handlers.o syscalls.o vectors.o
+make[3]: Leaving directory '/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/sim/core/simulation_results/hello-world/0/test_program/bsp'
+make[2]: Leaving directory '/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/sim/core'
+*******************************************************************************************
+* Compiling test-program /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tests/programs/custom/hello-world/hello-world.elf
+*******************************************************************************************
+/opt/riscv/bin/riscv32-unknown-elf-gcc \
+	 \
+	-Os -g -static -mabi=ilp32 -march=rv32imc_zicsr -Wall -pedantic  \
+	 \
+	-I ../../tests/asm \
+	-I /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/bsp \
+	-o /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tests/programs/custom/hello-world/hello-world.elf \
+	-nostartfiles \
+	/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tests/programs/custom/hello-world/hello-world.c \
+	-T /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/bsp/link.ld \
+	 -L simulation_results/hello-world/0/test_program/bsp \
+	-lcv-verif
+*******************************************************************************************
+* Generating hexfile, readelf and objdump files
+*******************************************************************************************
+/opt/riscv/bin/riscv32-unknown-elf-objcopy -O verilog \
+	/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tests/programs/custom/hello-world/hello-world.elf \
+	/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tests/programs/custom/hello-world/hello-world.hex
+/opt/riscv/bin/riscv32-unknown-elf-readelf -a /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tests/programs/custom/hello-world/hello-world.elf > /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tests/programs/custom/hello-world/hello-world.readelf
+/opt/riscv/bin/riscv32-unknown-elf-objdump \
+	-d \
+	-M no-aliases \
+	-M numeric \
+	-S \
+	/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tests/programs/custom/hello-world/hello-world.elf > /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tests/programs/custom/hello-world/hello-world.objdump
+/opt/riscv/bin/riscv32-unknown-elf-objdump \
+    	-d \
+        -S \
+	-M no-aliases \
+	-M numeric \
+        -l \
+	/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tests/programs/custom/hello-world/hello-world.elf | /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/bin/objdump2itb - > /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tests/programs/custom/hello-world/hello-world.itb
+*******************************************************************************************
+* Running with Verilator: logfile in simulation_results/hello-world/hello-world.log
+*******************************************************************************************
+mkdir -p simulation_results/hello-world/0/test_program
+simulation_results/hello-world/verilator_executable \
+	 \
+	"+firmware=../../tests/programs/custom/hello-world/hello-world.hex" \
+	| tee simulation_results/hello-world/0/test_program/hello-world.log
+  scopesDump:
+    SCOPE 0x2412258: TOP.tb_top_verilator
+    SCOPE 0x2412290: TOP.tb_top_verilator.cv32e40p_tb_wrapper_i.ram_i
+    SCOPE 0x24122c8: TOP.tb_top_verilator.cv32e40p_tb_wrapper_i.ram_i.dp_ram_i
+       DPI-EXPORT 0x41a9be: read_byte
+       DPI-EXPORT 0x41a9d0: write_byte
+
+[tb_top_verilator] finished dumping memory
+
+HELLO WORLD!!!
+This is the OpenHW Group CV32E40P CORE-V processor core.
+CV32E40P is a RISC-V ISA compliant core with the following attributes:
+	mvendorid = 0x602
+	marchid   = 0x4
+	mimpid    = 0x0
+	misa      = 0x40001104
+	XLEN is 32-bits
+	Supported Instructions Extensions: MIC
+
+TOP.tb_top_verilator @ 131120: EXIT SUCCESS
+- /home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/tb/core/tb_top_verilator.sv:83: Verilog $finish
+make[1]: Leaving directory '/home/bryan/University/2022-2023/AMasterProject/Bryan/core-v-verif/cv32e40p/sim/core'

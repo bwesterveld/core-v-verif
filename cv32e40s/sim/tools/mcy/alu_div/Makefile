@@ -26,13 +26,13 @@ DIV_ONLY_FIRMWARE_OBJS = $(addprefix $(DIV_ONLY_FIRMWARE)/, start.o print.o stat
 DIV_ONLY_TEST_OBJS =$(RISCV_TESTS)/rv32um/div.o $(RISCV_TESTS)/rv32um/divu.o $(RISCV_TESTS)/rv32um/rem.o $(RISCV_TESTS)/rv32um/remu.o
 
 $(DIV_ONLY_FIRMWARE)/div_only_firmware.elf: $(DIV_ONLY_FIRMWARE_OBJS) $(RISCV_TESTS_OBJS) $(DIV_ONLY_FIRMWARE)/link.ld
-	$(RISCV_EXE_PREFIX)gcc -g -Os -march=rv32imc -ffreestanding -nostdlib -o $@ \
+	$(RISCV_EXE_PREFIX)gcc -g -Os -march=rv32imc_zicsr -ffreestanding -nostdlib -o $@ \
 	$(RISCV_TEST_INCLUDES) \
 	-Wl,-Bstatic,-T,$(DIV_ONLY_FIRMWARE)/link.ld,-Map,$(DIV_ONLY_FIRMWARE)/div_only_firmware.map,--strip-debug \
 	$(DIV_ONLY_FIRMWARE_OBJS) $(DIV_ONLY_TEST_OBJS) -lgcc
 
 $(DIV_ONLY_FIRMWARE)/start.o: $(DIV_ONLY_FIRMWARE)/start.S
-	$(RISCV_EXE_PREFIX)gcc -c -march=rv32imc -g -o $@ $<
+	$(RISCV_EXE_PREFIX)gcc -c -march=rv32imc_zicsr -g -o $@ $<
 
 $(DIV_ONLY_FIRMWARE)/%.o: $(DIV_ONLY_FIRMWARE)/%.c
 	$(RISCV_EXE_PREFIX)gcc -c -march=rv32ic -g -Os --std=c99 -Wall \

@@ -42,6 +42,7 @@ int main(int argc, char **argv, char **env)
         "TOP.tb_top_verilator.cv32e40p_tb_wrapper_i.ram_i.dp_ram_i"));
     Verilated::scopesDump();
 
+#define VCD_TRACE
 #ifdef VCD_TRACE
     VerilatedVcdC *tfp = new VerilatedVcdC;
     top->trace(tfp, 99);
