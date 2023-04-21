@@ -154,7 +154,7 @@ XRUN_DIR          = xcelium.d
 
 # verilator configuration
 VERILATOR           = verilator
-VERI_FLAGS         +=
+VERI_FLAGS         += -fi
 VERI_COMPILE_FLAGS += -Wno-BLKANDNBLK $(SV_CMP_FLAGS) # hope this doesn't hurt us in the long run
 VERI_TRACE         ?=
 VERI_OBJ_DIR       ?= cobj_dir
@@ -488,7 +488,7 @@ testbench_verilator: CV_CORE_pkg $(TBSRC_VERI) $(TBSRC_PKG)
 	@echo "$(BANNER)"
 	@echo "* Compiling CORE TB and CV32E40P with Verilator"
 	@echo "$(BANNER)"
-	$(VERILATOR) --cc --sv --exe \
+	$(VERILATOR) --cc --sv -fi --exe \
 		$(VERI_TRACE) \
 		--Wno-lint --Wno-UNOPTFLAT \
 		--Wno-MODDUP --top-module \
