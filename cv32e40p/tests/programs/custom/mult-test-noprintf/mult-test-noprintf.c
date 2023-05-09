@@ -23,7 +23,7 @@ int main() {
 
 
   // __asm__ __volatile__ ("lui %0, %1" : "=r" (rd) : "i" (imm));
-  __asm__ __volatile__ ("mult %1, %2\n\t" : : "r" (a), "r" (b));
+  __asm__ __volatile__ ("mult %0, %1\n\t" : : "r" (a), "r" (b));
 
 
   return 0;
