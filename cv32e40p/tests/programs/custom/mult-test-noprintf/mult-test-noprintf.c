@@ -1,8 +1,7 @@
 int main() {
-
-  int a = 10;
-  int b = 20;
-  int result;
+  unsigned int a = 5;
+  unsigned int b = 10;
+  unsigned int result;
 
   __asm__ __volatile__ ("nop");
   __asm__ __volatile__ ("nop");
@@ -20,11 +19,8 @@ int main() {
   __asm__ __volatile__ ("nop");
   __asm__ __volatile__ ("nop");
 
-
-
-  // __asm__ __volatile__ ("lui %0, %1" : "=r" (rd) : "i" (imm));
-  __asm__ __volatile__ ("mult %0, %1\n\t" : : "r" (a), "r" (b));
-
-
+  asm volatile ("mul %0, %1, %2"
+                : "=r" (result)
+                : "r" (a), "r" (b));
   return 0;
 }
