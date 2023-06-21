@@ -15,7 +15,7 @@ export SHELL = /bin/bash
 
 CV_CORE_REPO   ?= https://github.com/bwesterveld/cv32e40p
 #CV_CORE_BRANCH ?= cv32e40p_v1.2.0
-CV_CORE_BRANCH ?= stripped
+CV_CORE_BRANCH ?= reconstruction
 CV_CORE_HASH   ?= head
 CV_CORE_TAG    ?= none
 # The CV_CORE_HASH above points to version of the RTL that is newer, but

@@ -59,15 +59,6 @@ int main() {
     // Perform matrix multiplication
     matrixMultiply(A, B, C);
 
-    // Print the result matrix C
-    printf("Result:\n");
-    for (i = 0; i < N; i++) {
-        for (j = 0; j < M; j++) {
-            printf("%d ", C[i][j]);
-        }
-        printf("\n");
-    }
-
     // NOP sled for automated testing STOP
     __asm__ __volatile__ (
         "nop\n"
@@ -86,6 +77,16 @@ int main() {
         "nop\n"
         "nop\n"
     );
+    
+    // Print the result matrix C
+    printf("Result:\n");
+    for (i = 0; i < N; i++) {
+        for (j = 0; j < M; j++) {
+            printf("%d ", C[i][j]);
+        }
+        printf("\n");
+    }
+
 
     return 0;
 }

@@ -64,11 +64,6 @@ int main(int argc, char **argv, char **env)
     std::cout << "[tb_top_verilator] mutsel = " << idx.aval << "\n";
 #endif
 
-    fi_object::injection_time = 5320;
-    fi_object::release_time = 5350;
-    fi_object::injection_location = "tb_top_verilator__DOT__cv32e40p_tb_wrapper_i__DOT__cv32e40p_core_i__DOT__id_stage_i__DOT__alu_op_a_mux_sel";
-    fi_object::faulty_value = 0;
-
     while (!Verilated::gotFinish()) {
         if (t > 40)
             top->rst_ni = 1;
